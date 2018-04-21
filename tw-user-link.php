@@ -16,10 +16,9 @@ add_filter('the_content', 'replace_tw_user_name_to_link');
 function replace_tw_user_name_to_link($content){
 
     if(preg_match("/@[0-9a-z_]{1,15}/i",$content, $search)){
-        for($i = 0, $size = count($search); $i < $size; ++$i){
-            $user = $search[$i];
-            $content = str_replace("$user", '<a href="https://twitter.com/'.esc_attr($user).'">'.esc_attr($user).'</a>', $content);
-        }
+
+         $user = $search[0];
+         $content = str_replace("$user", '<a href="https://twitter.com/'.esc_attr($user).'">'.esc_attr($user).'</a>', $content);
     }
     return $content;
 
