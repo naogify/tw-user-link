@@ -15,8 +15,7 @@
 /**
  * Search twitter user name and replace it to it's link.
  *
- * @param $content
- * It's varible for returning value of "the_content".
+ * @param type $var It's varible for "the_content".
  *
  * @return mixed
  */
