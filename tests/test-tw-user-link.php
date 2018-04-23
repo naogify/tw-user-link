@@ -29,7 +29,7 @@ class TwUserLinkTest extends WP_UnitTestCase{
 
 	function test_list_tw_name(){
 		$replace_to_link = replace_tw_user_name_to_link('こちらはWordPress関連のアカウント、<ul><li>@WordPressさん。</li><li>@wordpressdotcom</li><li>@Automattic</li></ul>です。');
-		$this->assertEquals('aこちらはWordPress関連のアカウント、<ul><li><a href="https://twitter.com/@WordPress">@WordPress</a>さん。</li><li><a href="https://twitter.com/@wordpressdotcom">@wordpressdotcom</a></li><li><a href="https://twitter.com/@Automattic">@Automattic</a></li></ul>です。',$replace_to_link);
+		$this->assertEquals('こちらはWordPress関連のアカウント、<ul><li><a href="https://twitter.com/@WordPress">@WordPress</a>さん。</li><li><a href="https://twitter.com/@wordpressdotcom">@wordpressdotcom</a></li><li><a href="https://twitter.com/@Automattic">@Automattic</a></li></ul>です。',$replace_to_link);
 	}
 
 }
