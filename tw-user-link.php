@@ -12,6 +12,7 @@
  * @package         Tw_User_Link
  */
 
+add_filter( 'the_content', 'replace_tw_user_name_to_link' );
 /**
  * Function search twitter username and make link for it.
  *
@@ -30,5 +31,3 @@ function replace_tw_user_name_to_link( $content ) {
 
 	return $content;
 }
-
-add_filter( 'the_content', 'replace_tw_user_name_to_link' );
