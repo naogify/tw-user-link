@@ -57,4 +57,12 @@ class TwUserLinkTest extends WP_UnitTestCase {
 		$this->assertEquals( 'こちらはWordPress関連のアカウント、<ul><li><a href="https://twitter.com/@WordPress">@WordPress</a>さん。</li><li><a href="https://twitter.com/@wordpressdotcom">@wordpressdotcom</a></li><li><a href="https://twitter.com/@Automattic">@Automattic</a></li></ul>です。', $replace_to_link );
 	}
 
+	/**
+	 * Xss test.
+	 */
+	function test_xss() {
+		$replace_to_link = replace_tw_user_name_to_link( 'こんにちは、@<b>hello</b>さん。' );
+		$this->assertEquals( 'こんにちは、@<b>hello</b>さん。', $replace_to_link );
+	}
+
 }
