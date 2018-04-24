@@ -22,11 +22,12 @@ add_filter( 'the_content', 'replace_tw_user_name_to_link' );
  */
 function replace_tw_user_name_to_link( $content ) {
 	if ( preg_match_all( '/@[0-9a-z_]{1,15}/i', $content, $search ) ) {
-		$user = $search[0];
+		$user      = $search[0];
 		$protocols = array( 'http', 'https' );
-		foreach ( $user as $value ){
-			$content = str_replace( "$value", '<a href="' . esc_url( 'https://twitter.com/' . $value, $protocols ) .'">' . esc_html( $value ) . '</a>', $content );
+		foreach ( $user as $value ) {
+			$content = str_replace( "$value", '<a href="' . esc_url( 'https://twitter.com/' . $value, $protocols ) . '">' . esc_html( $value ) . '</a>', $content );
 		}
 	}
+
 	return $content;
 }
