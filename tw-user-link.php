@@ -21,7 +21,7 @@ add_filter( 'the_content', 'replace_tw_user_name_to_link' );
  * @return string
  */
 function replace_tw_user_name_to_link( $content ) {
-	$content = preg_replace( '/@[0-9a-z_]{1,15}/i', '<a href="https://twitter.com/' . "$0" . '">' . "$0" . '</a>', $content );
+	$content = preg_replace( '/@[0-9a-z_]{1,15}/i', '<a href="https://twitter.com/' . $0 . '">' . $0 . '</a>', $content );
 
 	return $content;
 }
