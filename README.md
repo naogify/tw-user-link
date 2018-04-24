@@ -13,8 +13,6 @@ $ cd vccw.test
 $ vagrant up
 $ cd /wordpress/wp-content/plugins/
 $ git clone https://github.com/naogify/tw-user-link
-
-
 ```
 
 ## Create test environment
@@ -23,7 +21,6 @@ $ git clone https://github.com/naogify/tw-user-link
 $ vagrant ssh 
 $ cd /var/www/html/wordpress/wp-content/plugins/tw-user-link/
 $ bash bin/install-wp-tests.sh wordpress_test root wordpress localhost latest
-
 ```
 
 ### Running automated testing:
