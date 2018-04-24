@@ -94,7 +94,7 @@ class TwUserLinkTest extends WP_UnitTestCase {
 	}
 
 	function test_should_convert_correctly() {
-		$expected = "Hello @hello, <a href='https://github.com/miya'>@miya</a>, <a class=\"twitter-link\" href=\"https://twitter.com/twitter1\">@twitter1</a>, <a class=\"twitter-link\" href=\"https://twitter.com/twitter2\">@twitter2</a>!";
+		$expected = "Hello <a class=\"twitter-link\" href=\"https://twitter.com/hello\">@hello</a>, <a href='https://github.com/miya'>@miya</a>, <a class=\"twitter-link\" href=\"https://twitter.com/twitter1\">@twitter1</a>, <a class=\"twitter-link\" href=\"https://twitter.com/twitter2\">@twitter2</a>!";
 		$content = "Hello @hello, <a href='https://github.com/miya'>@miya</a>, @twitter1, @twitter2!";
 		$result = replace_tw_user_name_to_link( $content );
 		$this->assertSame( $expected, $result );
