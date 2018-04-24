@@ -16,11 +16,12 @@ add_filter( 'the_content', 'replace_tw_user_name_to_link' );
 /**
  * Function search twitter username and make link for it.
  *
- * @param string $content the_content.
+ * @param string $content Content of post.
  *
  * @return string
  */
 function replace_tw_user_name_to_link( $content ) {
+	var_dump( $content );
 	if ( preg_match_all( '/@[0-9a-z_]{1,15}/i', $content, $search ) ) {
 		$user = $search[0];
 		$size = count( $user );
