@@ -65,4 +65,22 @@ class TwUserLinkTest extends WP_UnitTestCase {
 		$this->assertEquals( 'こんにちは、@<b>hello</b>さん。', $replace_to_link );
 	}
 
+	/**
+	 * Duble link with atmarck test.
+	 */
+	function test_duble_link_with_atmark() {
+		$replace_to_link = replace_tw_user_name_to_link( 'こんにちは、<a href="https://twitter.com/@WordPress">@WordPress</a>さん。' );
+		$this->assertEquals( 'こんにちは、<a href="https://twitter.com/@WordPress">@WordPress</a>さん。', $replace_to_link );
+
+	}
+
+	/**
+	 * Duble link without atmarck test.
+	 */
+	function test_duble_link_without_atmark() {
+		$replace_to_link = replace_tw_user_name_to_link( 'こんにちは、<a href="https://twitter.com/WordPress">@WordPress</a>さん。' );
+		$this->assertEquals( 'こんにちは、<a href="https://twitter.com/WordPress">@WordPress</a>さん。', $replace_to_link );
+
+	}
+
 }
