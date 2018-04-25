@@ -65,22 +65,38 @@ class TwUserLinkTest extends WP_UnitTestCase {
 		$this->assertEquals( 'こんにちは、@<b>hello</b>さん。', $replace_to_link );
 	}
 
-	/**
-	 * Duble link with atmarck test.
-	 */
-	function test_duble_link_with_atmark() {
-		$replace_to_link = replace_tw_user_name_to_link( 'こんにちは、<a href="https://twitter.com/@WordPress">@WordPress</a>さん。' );
-		$this->assertEquals( 'こんにちは、<a href="https://twitter.com/@WordPress">@WordPress</a>さん。', $replace_to_link );
-
+	function test_twitter_link() {
+		$expected = 'Hello <a class="twitter-link" href="https://twitter.com/miya">@miya</a>.';
+		$content  = "Hello @miya.";
+		$result   = replace_tw_user_name_to_link( $content );
+		$this->assertSame( $expected, $result );
 	}
 
-	/**
-	 * Duble link without atmarck test.
-	 */
-	function test_duble_link_without_atmark() {
-		$replace_to_link = replace_tw_user_name_to_link( 'こんにちは、<a href="https://twitter.com/WordPress">@WordPress</a>さん。' );
-		$this->assertEquals( 'こんにちは、<a href="https://twitter.com/WordPress">@WordPress</a>さん。', $replace_to_link );
-
+	function test_should_not_be_converted() {
+		$expected = "Hello <a href='https://github.com/miya'>@miya</a>!";
+		$content  = "Hello <a href='https://github.com/miya'>@miya</a>!";
+		$result   = replace_tw_user_name_to_link( $content );
+		$this->assertSame( $expected, $result );
 	}
 
+	function test_should_not_be_converted_2() {
+		$expected = "<a href='https://github.com/miya'>こんにちは@miyaさん</a>!";
+		$content  = "<a href='https://github.com/miya'>こんにちは@miyaさん</a>!";
+		$result   = replace_tw_user_name_to_link( $content );
+		$this->assertSame( $expected, $result );
+	}
+
+	function test_should_not_be_converted_3() {
+		$expected = "<a href='https://github.com/miya'>こんにちは@miyaさんこんにちは@miyaさん</a>!";
+		$content  = "<a href='https://github.com/miya'>こんにちは@miyaさんこんにちは@miyaさん</a>!";
+		$result   = replace_tw_user_name_to_link( $content );
+		$this->assertSame( $expected, $result );
+	}
+
+	function test_should_convert_correctly() {
+		$expected = "Hello <a class=\"twitter-link\" href=\"https://twitter.com/hello\">@hello</a>, <a href='https://github.com/miya'>@miya</a>, <a class=\"twitter-link\" href=\"https://twitter.com/twitter1\">@twitter1</a>, <a class=\"twitter-link\" href=\"https://twitter.com/twitter2\">@twitter2</a>!";
+		$content  = "Hello @hello, <a href='https://github.com/miya'>@miya</a>, @twitter1, @twitter2!";
+		$result   = replace_tw_user_name_to_link( $content );
+		$this->assertSame( $expected, $result );
+	}
 }
