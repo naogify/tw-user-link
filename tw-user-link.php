@@ -21,14 +21,15 @@ add_filter( 'the_content', 'replace_tw_user_name_to_link' );
  * @return string
  */
 function replace_tw_user_name_to_link( $content ) {
-	$pattern="/<a\s.*?>.*?@.*?<\/a>|(?:@)(\w{1,15})/";
-	$replacement=function($x){
-		if(count($x)==1){
+	$pattern     = "/<a\s.*?>.*?@.*?<\/a>|(?:@)(\w{1,15})/";
+	$replacement = function ( $x ) {
+		if ( count( $x ) == 1 ) {
 			return $x[0];
-		}else{
-			return '<a class="twitter-link" href="https://twitter.com/'.$x[1].'">@'.$x[1].'</a>';
+		} else {
+			return '<a class="twitter-link" href="https://twitter.com/' . $x[1] . '">@' . $x[1] . '</a>';
 		}
 	};
-	$content=preg_replace_callback($pattern,$replacement,$content);
+	$content     = preg_replace_callback( $pattern, $replacement, $content );
+
 	return $content;
 }

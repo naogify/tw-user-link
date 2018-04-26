@@ -65,6 +65,9 @@ class TwUserLinkTest extends WP_UnitTestCase {
 		$this->assertEquals( 'こんにちは、@<b>hello</b>さん。', $replace_to_link );
 	}
 
+	/**
+	 * Defalut test.
+	 */
 	function test_twitter_link() {
 		$expected = 'Hello <a class="twitter-link" href="https://twitter.com/miya">@miya</a>.';
 		$content  = "Hello @miya.";
@@ -72,6 +75,9 @@ class TwUserLinkTest extends WP_UnitTestCase {
 		$this->assertSame( $expected, $result );
 	}
 
+	/**
+	 * Sentence + username in link test.
+	 */
 	function test_should_not_be_converted() {
 		$expected = "Hello <a href='https://github.com/miya'>@miya</a>!";
 		$content  = "Hello <a href='https://github.com/miya'>@miya</a>!";
@@ -79,6 +85,9 @@ class TwUserLinkTest extends WP_UnitTestCase {
 		$this->assertSame( $expected, $result );
 	}
 
+	/**
+	 * Username in link test.
+	 */
 	function test_should_not_be_converted_2() {
 		$expected = "<a href='https://github.com/miya'>こんにちは@miyaさん</a>!";
 		$content  = "<a href='https://github.com/miya'>こんにちは@miyaさん</a>!";
@@ -86,6 +95,9 @@ class TwUserLinkTest extends WP_UnitTestCase {
 		$this->assertSame( $expected, $result );
 	}
 
+	/**
+	 * Multiple username in link test.
+	 */
 	function test_should_not_be_converted_3() {
 		$expected = "<a href='https://github.com/miya'>こんにちは@miyaさんこんにちは@miyaさん</a>!";
 		$content  = "<a href='https://github.com/miya'>こんにちは@miyaさんこんにちは@miyaさん</a>!";
@@ -93,6 +105,9 @@ class TwUserLinkTest extends WP_UnitTestCase {
 		$this->assertSame( $expected, $result );
 	}
 
+	/**
+	 * Sentence + username + username in link test.
+	 */
 	function test_should_convert_correctly() {
 		$expected = "Hello <a class=\"twitter-link\" href=\"https://twitter.com/hello\">@hello</a>, <a href='https://github.com/miya'>@miya</a>, <a class=\"twitter-link\" href=\"https://twitter.com/twitter1\">@twitter1</a>, <a class=\"twitter-link\" href=\"https://twitter.com/twitter2\">@twitter2</a>!";
 		$content  = "Hello @hello, <a href='https://github.com/miya'>@miya</a>, @twitter1, @twitter2!";
@@ -100,6 +115,9 @@ class TwUserLinkTest extends WP_UnitTestCase {
 		$this->assertSame( $expected, $result );
 	}
 
+	/**
+	 * Username in link with class test.
+	 */
 	function test_should_not_be_converted_4() {
 		$expected = "<a class=\"test@\" href=\"https://github.com/@miya\">こんにちは@miyaさんこんにちは@miyaさん</a>!";
 		$content  = "<a class=\"test@\" href=\"https://github.com/@miya\">こんにちは@miyaさんこんにちは@miyaさん</a>!";
@@ -107,6 +125,9 @@ class TwUserLinkTest extends WP_UnitTestCase {
 		$this->assertSame( $expected, $result );
 	}
 
+	/**
+	 * Email link test.
+	 */
 	function test_should_not_be_converted_5() {
 		$expected = "<a href=\"mailto:foo@example.com\">foo@example.com</a>";
 		$content  = "<a href=\"mailto:foo@example.com\">foo@example.com</a>";
@@ -114,5 +135,13 @@ class TwUserLinkTest extends WP_UnitTestCase {
 		$this->assertSame( $expected, $result );
 	}
 
-
+	/**
+	 * Multiple @ in email link test.
+	 */
+	function test_should_not_be_converted_6() {
+		$expected = "<a href=\"mailto:foo@example.com\">foo@example.com@miyaさん</a>";
+		$content  = "<a href=\"mailto:foo@example.com\">foo@example.com@miyaさん</a>";
+		$result   = replace_tw_user_name_to_link( $content );
+		$this->assertSame( $expected, $result );
+	}
 }
