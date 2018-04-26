@@ -21,26 +21,14 @@ add_filter( 'the_content', 'replace_tw_user_name_to_link' );
  * @return string
  */
 function replace_tw_user_name_to_link( $content ) {
-/*	$pattern     = array( '/(<a.*?>(.*?)<\/a>)/' );*/
-//	$replacement = array( '$0' );
-//	$content = preg_replace( $pattern, $replacement, $content );
-//	var_dump( $content );
-	/*	$pattern     = array( '/(?!(<a.*?>(.*?)<\/a>))(?=(@[0-9a-z_]{1,15}))/i' );*/
-//	$replacement = array( '<a href="https://twitter.com/' . '$0' . '">' . '$0' . '</a>' );
-
-
-//	$content = '<p id="'.'/@wordpress'.'">@wordpress<\/p>@NaokiUs';
-	$pattern     = array( '/^(?!.*(<a.*?>))(?=.*(@[0-9a-z_]{1,15}))/i' );
-	$content = preg_replace_callback(
-		$pattern,
-		function ($matches) {
-			var_dump( $matches );
-			return $matches;
-		},
-		$content
-	);
-
-	var_dump( $content );
-
+	$pattern="/<a\s.*?>.*?@.*?<\/a>|(?:@)(\w{1,15})/";
+	$replacement=function($x){
+		if(count($x)==1){
+			return $x[0];
+		}else{
+			return '<a class="twitter-link" href="https://twitter.com/'.$x[1].'">@'.$x[1].'</a>';
+		}
+	};
+	$content=preg_replace_callback($pattern,$replacement,$content);
 	return $content;
 }
