@@ -21,7 +21,7 @@ add_filter( 'the_content', 'replace_tw_user_name_to_link' );
  * @return string
  */
 function replace_tw_user_name_to_link( $content ) {
-	$pattern     = "/<a\s.*?>.*?@.*?<\/a>|(?:@)(\w{1,15})/";
+	$pattern     = '/<a\s.*?>.*?@.*?<\/a>|(?:@)(\w{1,15})/';
 	$replacement = function ( $x ) {
 		if ( count( $x ) == 1 ) {
 			return $x[0];

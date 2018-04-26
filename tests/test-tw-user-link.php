@@ -70,7 +70,7 @@ class TwUserLinkTest extends WP_UnitTestCase {
 	 */
 	function test_twitter_link() {
 		$expected = 'Hello <a class="twitter-link" href="https://twitter.com/miya">@miya</a>.';
-		$content  = "Hello @miya.";
+		$content  = 'Hello @miya.';
 		$result   = replace_tw_user_name_to_link( $content );
 		$this->assertSame( $expected, $result );
 	}
