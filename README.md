@@ -19,7 +19,7 @@ $ git clone https://github.com/naogify/tw-user-link
 
 ```
 $ vagrant ssh 
-$ cd /var/www/html/wp-content/plugins/tw-user-link/
+$ cd /var/www/html/wp-content/plugins/
 $ bash bin/install-wp-tests.sh wordpress_test root wordpress localhost latest
 ```
 
