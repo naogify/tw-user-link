@@ -23,7 +23,6 @@ add_filter( 'the_content', 'replace_tw_user_name_to_link' );
 function replace_tw_user_name_to_link( $content ) {
 	$pattern     = '/<a\s.*?>.*?@.*?<\/a>|(?:@)(\w{1,15})|([\w\?\*\[|\]%\'=~^\{\}\/\+!#&\$\.-]{1,64})@([\w-]{1,252})./';
 	$replacement = function ( $x ) {
-		var_dump($x);
 		if ( count( $x ) == 2 ) {
 			return '<a class="twitter-link" href="https://twitter.com/' . $x[1] . '">@' . $x[1] . '</a>';
 		} else {

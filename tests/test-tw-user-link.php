@@ -149,8 +149,8 @@ class TwUserLinkTest extends WP_UnitTestCase {
 	 * Email test.
 	 */
 	function test_should_not_be_converted_7() {
-		$expected = "foo@example.com";
-		$content  = "foo@example.com";
+		$expected = 'foo@example.com';
+		$content  = 'foo@example.com';
 		$result   = replace_tw_user_name_to_link( $content );
 		$this->assertSame( $expected, $result );
 	}
